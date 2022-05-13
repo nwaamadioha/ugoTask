@@ -85,12 +85,8 @@ export const signinStrategy = (passport, User) => {
                         message: 'Incorrect password.'
                     });
                 }
-     
-     
                 const userinfo = user.get();
                 return done(null, userinfo);
-     
-     
             }).catch(function(err) {
      
                 console.log("Error:", err);

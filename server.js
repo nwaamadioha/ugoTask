@@ -4,11 +4,11 @@ import session from "express-session";
 import 'dotenv/config';
 import ejs from "ejs";
 import bodyParser from "body-parser";
-import Sequelize  from "sequelize";
+import Sequelize  from "./config/database.js";
 import User from "./models/User.js";
 import authRouter from "./routes/auth.js"
 import homeRouter from "./routes/index.js"
-import { signupStrategy, signinStrategy  } from "./config/passport/passport.js"
+import { signupStrategy, signinStrategy  } from "./config/passport.js"
 
 
 const app = express();
@@ -54,24 +54,11 @@ app.use("/", authRouter);
 
 
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'path/to/database.sqlite'
-});
 
-const connect = async () => {
-    try {
-      await sequelize.sync({ force: false });
-    //   await sequelize.authenticate();
-      console.log('Connection has been established successfully.');
-    } catch (error) {
-      console.error('Unable to connect to the database:', error);
-    }
-  };
 
 
 
 app.listen(3000, function(){
     console.log("Server is running on 3000");
-    connect();
+    // connect();
 })
