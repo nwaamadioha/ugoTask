@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import LocalStrategy from "passport-local";
 
 
+
+
 export const signupStrategy = (passport, User) => {
     
     passport.use('local-signup', new LocalStrategy.Strategy(
@@ -55,8 +57,6 @@ export const signupStrategy = (passport, User) => {
 }
 
 
-
-
 export const signinStrategy = (passport, User) => {
     passport.use('local-signin', new LocalStrategy.Strategy(
  
@@ -87,6 +87,7 @@ export const signinStrategy = (passport, User) => {
                 }
                 const userinfo = user.get();
                 return done(null, userinfo);
+
             }).catch(function(err) {
      
                 console.log("Error:", err);
@@ -104,8 +105,9 @@ export const signinStrategy = (passport, User) => {
 
 
  
- 
- 
- 
 
- 
+
+
+
+
+

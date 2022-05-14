@@ -15,12 +15,13 @@ const User = sequelize.define('User', {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
 
 });
 

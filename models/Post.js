@@ -1,13 +1,14 @@
 import {Sequelize, DataTypes}  from "sequelize";
-
+import User from "./User.js"
 const sequelize = new Sequelize('sqlite::memory:');
 
-const Post = sequelize.define('Post', {
+const Post = sequelize.define('Post', 
+  {
     // Model attributes are defined here
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false
-    },
+    // date: {
+    //   type: DataTypes.DATEONLY,
+    //   allowNull: false
+    // },
     content: {
       type: DataTypes.STRING,
       allowNull: false
@@ -17,8 +18,11 @@ const Post = sequelize.define('Post', {
       allowNull: false
     }
 
-}, {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: 'User' // We need to choose the model name
+  }, 
+);
+User.hasMany(Post, {
+  foreignKey: "email"
 });
+Post.belongsTo(User);
+
+export default Post;
