@@ -5,7 +5,16 @@ import jwt from "jsonwebtoken";
 import Post from "../models/Post.js";
 const router = express.Router();
 
-
+const posts = [ 
+  {
+    username: 'ewu',
+    title: "Post 1"
+  },
+  {
+    username: "onyi",
+    title: "Post2"
+  }
+]
 
 
 router.get('/login', function(req, res, next) {
@@ -24,8 +33,8 @@ router.get('/register', function(req, res, next) {
 
 //protected route
 router.get("/posts", authenticateToken, (req, res) => {
-  res.render("posts")
-  // res.json(posts.filter(post=>post.username === req.user.name))
+  // res.render("posts")
+  res.json(posts.filter(post=>post.username === req.user.name))
   
 })
 
@@ -35,14 +44,15 @@ router.post("/login",
     const username = req.user.username 
     const user = {name: username}
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
-    res.json({accessToken: accessToken})
+    // res.json({accessToken: accessToken})
     
-    // res.redirect('/blog' );
+    res.render("blog", {accessToken: accessToken})
   }
 );
 
 function authenticateToken (req, res, next) {
   const authHeader = req.headers['authorization']
+  console.log(authHeader)
   const token = authHeader && authHeader.split(' ')[1]
   if (token == null ) return res.sendStatus(401)
 

@@ -6,9 +6,10 @@
     <h1 class="display-3">You are welcome to a blank word!</h1>
     <p class="secret-text">Feel free to write a post, upload your cat picture or upload that horrible video.</p>
     <hr>
-    
+   
+
     <a class="btn btn-light btn-lg" href="/logout" role="button">Log Out</a>
-    <a class="btn btn-dark btn-lg" href="/posts" role="button">Submit a Secret</a>
+    <a class="btn btn-dark btn-lg" href="/posts?authorization=Bearer "+accessToken  role="button">Submit a Secret</a>
   </div>
 </div>
 
